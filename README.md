@@ -1,4 +1,4 @@
 # Library-Hyread-Ebook-Searching
-The script for finding free ebooks in the Taiwanese public library on Hyread platform/n
+The script for finding free ebooks in the Taiwanese public library on Hyread platform\n
 It is My First Github Project
 Just for sharing tiny tools for self-using
