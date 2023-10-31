@@ -1,0 +1,24 @@
+function main(workbook: ExcelScript.Workbook) {
+	let selectedSheet = workbook.getActiveWorksheet();
+	// Set range B1 on selectedSheet
+	selectedSheet.getRange("B1").setFormulaLocal("=IF(TEXT(A1,0)=A1,A1,ROUND(A1,-4))");
+	// Auto fill range B1
+	selectedSheet.getRange("B1").autoFill("B1:B1000", ExcelScript.AutoFillType.fillDefault);
+	// Paste to range C1 on selectedSheet from range B1:B1000 on selectedSheet
+	selectedSheet.getRange("C1").copyFrom(selectedSheet.getRange("B1:B1000"), ExcelScript.RangeCopyType.values, false, false);
+	// Remove duplicates from range C1:C1000 on selectedSheet
+	selectedSheet.getRange("C1:C1000").removeDuplicates([0], true);
+	// Set range C1 on selectedSheet
+	//selectedSheet.getRange("F1").setFormulaLocal("=CONCAT(C1,D1,E1)");
+	selectedSheet.getRange("F1").setFormulaLocal("=CONCAT(char(10),C1)");
+	// Auto fill range F1
+	selectedSheet.getRange("F1").autoFill("F1:F1000", ExcelScript.AutoFillType.fillDefault);
+	// Remove duplicates from range C1:C1000 on selectedSheet
+	selectedSheet.getRange("F1:F1000").removeDuplicates([0], true);
+	// Contact selectedSheet from range E1:E1000 on selectedSheet
+	selectedSheet.getRange("J1").setFormulaLocal("=CONCAT(F1:F1000)");
+	//selectedSheet.getRange("K1").setFormulaLocal("=LEFT(J1,LEN(J1)-1)");
+	//selectedSheet.getRange("K1").setFormulaLocal("=CONCAT(J1,char(112))");
+	// Paste to range C1 on selectedSheet from range B1:B1000 on selectedSheet
+	selectedSheet.getRange("K1").copyFrom(selectedSheet.getRange("J1"), ExcelScript.RangeCopyType.values, false, false);
+}
