@@ -1,5 +1,2 @@
-# Windows Only. (Mac and Linux are not officially tested.)
-
-# You can execute HyreadLibrarySearchBook.py after:
-# pip install selenium
-# pip install winsound
+selenium==4.15.0
+pydub==0.25.1
