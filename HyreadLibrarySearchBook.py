@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -12,18 +14,17 @@ import os
 #duration  = 1000 #millisecond
 #freq = 300 #Hz
 
-# 打開 txt 檔案並讀取內容
+# 打開 txt 檔案(內含全台公共圖書館Hyread網址，可根據需求自行增減)並讀取內容
 txt_file = os.path.dirname(__file__)+'\\Library00.txt'
 urls = []
 with open(txt_file,'r', encoding='UTF-16') as file:
     urls = file.readlines()  # 讀取所有行並儲存為列表
     urls = [link.strip() for link in urls] # 去除換行符"
 
-Booklist = ["The Passion Paradox"]
-#20231027
-#"掌握形塑未來30年","從中央思想到群體思維","無所事事的哲學","無法翻譯的情緒","思辨賽局"
-#"小狗錢錢","當代價值投資","機率思考的策略論","交易者的超級心流","5000天後","大人學破局","墮落的人腦"
-#"知識複利筆記","峰與谷","不拖延的人生","先吃了那隻","逆轉人生8大關鍵力","健身從深蹲開始"
+# 輸入想要搜尋的書名或關鍵字，可輸入多本書
+# 由於本程式僅會開啟第一搜尋結果，建議輸入書名副標
+# 如："原子習慣"建議輸入"細微改變帶來巨大成就的實證法則";
+Booklist = ["細微改變帶來巨大成就的實證法則","蛤蟆先生去看心理師"]
 
 
 print("----------------------------------------------------------------------------------------------------------------")
@@ -86,10 +87,14 @@ for SearchName in Booklist:
                 except NoSuchElementException:
                     pass
     print("     search end")
+    #
     #winsound.Beep(freq, duration)
     winsound.PlaySound('finished.wav', winsound.SND_FILENAME)
 winsound.PlaySound('finished3.wav', winsound.SND_FILENAME)
 print("----------------------------------------------------------------------------------------------------------------")
 print("---------------------------------------------------search end--------------------------------------------------")
 print("----------------------------------------------------------------------------------------------------------------")
+
+# driver在程式執行完會自動關閉，我沒找到更合適的方法讓網頁持續停留
+# 暫時用停1000秒的方法，或者可用break point強制暫停在最後一行
 time.sleep(1000)
