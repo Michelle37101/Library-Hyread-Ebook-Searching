@@ -3,7 +3,7 @@
 # MIT License (not included .wav file)
 # Please leave feedback with your kindness 
 
-# How to use: 
+# How to find the book you want: 
 1. download all files
 2. run script "HyreadLibrarySearchBook.py" after keying the book title in
  
@@ -51,3 +51,7 @@
 新城鄉立圖書館
 彰化雲端電子書庫
 彰化縣公共圖書館
+
+# ExcelScript_distill-information.txt
+當註記的內容從hyread輸出後，會導致註記內容裡有很多瑣碎的時間或標題資訊參雜在筆記裡，
+這是一份用在Excel裡的自動化指令碼，來清除掉這些我認為是雜訊的內容，整理完的結果會輸出在K1儲存格中
