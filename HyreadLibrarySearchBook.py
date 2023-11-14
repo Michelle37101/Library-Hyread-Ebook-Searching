@@ -7,17 +7,22 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 import time
-import winsound
 import os
+import pathlib
+from pydub import AudioSegment
+from pydub.playback import play
+
+finished_sound = AudioSegment.from_wav('finished.wav')
+finished3_sound = AudioSegment.from_wav('finished3.wav')
 
 #reminder sound
 #duration  = 1000 #millisecond
 #freq = 300 #Hz
 
 # 打開 txt 檔案(內含全台公共圖書館Hyread網址，可根據需求自行增減)並讀取內容
-txt_file = os.path.dirname(__file__)+'\\Library00.txt'
+txt_file = pathlib.Path('Library00.txt')
 urls = []
-with open(txt_file,'r', encoding='UTF-16') as file:
+with open(txt_file,'r', encoding='UTF-8') as file:
     urls = file.readlines()  # 讀取所有行並儲存為列表
     urls = [link.strip() for link in urls] # 去除換行符"
 
@@ -87,10 +92,8 @@ for SearchName in Booklist:
                 except NoSuchElementException:
                     pass
     print("     search end")
-    #
-    #winsound.Beep(freq, duration)
-    winsound.PlaySound('finished.wav', winsound.SND_FILENAME)
-winsound.PlaySound('finished3.wav', winsound.SND_FILENAME)
+    play(finished_sound)
+play(finished3_sound)
 print("----------------------------------------------------------------------------------------------------------------")
 print("---------------------------------------------------search end--------------------------------------------------")
 print("----------------------------------------------------------------------------------------------------------------")
